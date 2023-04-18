@@ -26,12 +26,17 @@ $(document).ready(function(){
     });
 
     $('body').on('click', '', function (event) {
-        
         if (event.target.className.includes('drop-button')) {
         } else {
             $('.drop-down-menu').hide();
         }
+
+        if (event.target.className.includes('transaction_type')) {
+        } else {
+            $('.transaction_type').next().hide();
+        }
     });
+
     $('.expend-sub-menu').on('click', function() {
         var id = $(this).data('id');
         if(parseInt(count) % 2 == 0) {
