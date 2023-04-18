@@ -35,11 +35,15 @@ $(document).ready(function(){
         $("button[role-dir=" + dir + "]").children(":first").html(coin_svg);
         $("button[role-dir=" + dir + "]").children("span").html(coin_abbrivation);
         $(".select_coin_modal").addClass("hidden");
+    });
+
+    $(".select_coin_modal").click(function(){
+        $(".select_coin_modal").addClass("hidden");
     })
 
     $(".swap").click(function(){
-        let prev_html = $(this).next().html();
-        $(this).next().html($(this).prev().html());
-        $(this).prev().html(prev_html);
+        $(this).parent().toggleClass("flex-col-reverse");
+        $(this).parent().toggleClass("flex-col");
+
     })
 });
