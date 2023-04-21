@@ -2,29 +2,35 @@ const coin_abbrivation_list = ["BTC", "ETH", "USDT", "BNB", "USDC", "ADA", "DOGC
 
 $(document).ready(function(){
     var count = 0, state = 0;
+
+    //when user click on main-menu in humber-menu, function that rotate down-arrow symbol
     var initSubMenu = function () {
         $('.expend-sub-menu .sub-menu-content').css('height', '0px');
         $('.arrow-icon').removeClass('rotate-180')
         count = 0;
     }
 
-
+    //
     $("button[aria-haspopup='menu']").click(function(){
         $("button[aria-haspopup='menu']").next().fadeOut(200);
         $(this).next().fadeToggle(200);
     });
 
+    //when click on humbger button, display humber menu.
     $('.humbger-button').on('click', function () {
         initSubMenu();
         $('#humbger-menu').fadeIn(500);
         $('body').css("overflow", "hidden");
     });
+
+    //when click on close button of humbger part, close menu.
     $('.humbger-menu-close').on('click', function () {
         initSubMenu();
         $('body').css("overflow", "auto");
         $('#humbger-menu').fadeOut(500);
     });
 
+    //when click on other part of main menu, disappear submenu.
     $('body').on('click', '', function (event) {
         if (event.target.className.includes('drop-button')) {
         } else {
@@ -36,6 +42,7 @@ $(document).ready(function(){
             $('.transaction_type').next().hide();
         }
     });
+
 
     $('.expend-sub-menu').on('click', function() {
         var id = $(this).data('id');
@@ -75,7 +82,8 @@ $(document).ready(function(){
     $(".farm_transaction").click(function(){
         $(this).next().slideToggle(200);
     });
-    
+
+    //filter coin list when type coin name in search input.
     $("#coin_search").keyup(function(){
         var text = $(this).val().toLowerCase();
         
@@ -84,12 +92,16 @@ $(document).ready(function(){
         });
     });
 
+    //when click on coin symbol, 
+    //display coin list for search coin.
+    //assign the value of to, from dir.
     var dir = "";
     $(".coin_symbol").click(function(){
         dir = $(this).attr("role-dir");
         $(".select_coin_modal").removeClass("hidden");
     });
 
+    //exchange coin symbol in the from, to part when user click on coin symbol
     $("li[role=roleitem]").click(function(){
         let index = $(this).attr("tabindex");
         let coin_abbrivation = coin_abbrivation_list[index];
@@ -99,13 +111,14 @@ $(document).ready(function(){
         $(".select_coin_modal").addClass("hidden");
     });
 
+    //disappear coin search modal.
     $(".select_coin_modal").click(function(){
         $(".select_coin_modal").addClass("hidden");
     })
 
+    // shift place of from, to position.
     $(".swap").click(function(){
         $(this).parent().toggleClass("flex-col-reverse");
         $(this).parent().toggleClass("flex-col");
-
     })
 });

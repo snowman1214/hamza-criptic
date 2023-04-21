@@ -769,6 +769,10 @@ video {
   height: 100%;
 }
 
+.h-\[0\] {
+  height: 0;
+}
+
 .min-h-\[200px\] {
   min-height: 200px;
 }
