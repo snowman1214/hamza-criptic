@@ -32,7 +32,7 @@ $(document).ready(function(){
 
     //when click on other part of main menu, disappear submenu.
     $('body').on('click', '', function (event) {
-        if (event.target.className.includes('drop-button')) {
+        if ($('.drop-button') && event.target.className.includes('drop-button')) {
         } else {
             $('.drop-down-menu').hide();
         }
@@ -98,7 +98,7 @@ $(document).ready(function(){
     var dir = "";
     $(".coin_symbol").click(function(){
         dir = $(this).attr("role-dir");
-        $(".select_coin_modal").removeClass("hidden");
+        $(".select_coin_modal").fadeToggle("slow");
     });
 
     //exchange coin symbol in the from, to part when user click on coin symbol
@@ -108,12 +108,12 @@ $(document).ready(function(){
         let coin_svg = $(this).children(":first").html();
         $("button[role-dir=" + dir + "]").children(":first").html(coin_svg);
         $("button[role-dir=" + dir + "]").children("span").html(coin_abbrivation);
-        $(".select_coin_modal").addClass("hidden");
+        $(".select_coin_modal").fadeToggle("hidden");
     });
 
     //disappear coin search modal.
     $(".select_coin_modal").click(function(){
-        $(".select_coin_modal").addClass("hidden");
+        $(".select_coin_modal").fadeToggle("slow");
     })
 
     // shift place of from, to position.
@@ -121,4 +121,5 @@ $(document).ready(function(){
         $(this).parent().toggleClass("flex-col-reverse");
         $(this).parent().toggleClass("flex-col");
     })
+
 });
